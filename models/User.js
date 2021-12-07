@@ -46,7 +46,11 @@ function register(data) {
 
 			var userData = await getUser(`where user_type='${data?.user_type}' and email = '${data?.email}'`);
 			// console.log(is_login,'userData',userData);
-			if (!userData[0] && !is_login) {
+			var userPhone = await getUser(`where phone='${data?.phone}'`);
+			// console.log(is_login,'userData',userData);
+			var userName = await getUser(`where user_name='${data?.user_name}'`);
+			// console.log(is_login,'userData',userData);
+			if (!userData[0] && !is_login && !userPhone[0] && !userName[0]) {
 				DB.query(`insert into users (email, user_type, first_name,last_name, password) values ('${data?.email}','${data?.user_type}','${data?.first_name}','${data?.last_name}' , '${data?.password}')`, async function (error, results) {
 					if (error) throw error;
 
@@ -78,6 +82,12 @@ function register(data) {
 				}
 				if(is_login && !userData[0]){
 					return reject("You are not registered with us, please sign up.");
+				}
+				if(!is_login && userPhone[0]){
+					return reject("Phone number already exist please try with another number.");
+				}
+				if(!is_login && userName[0]){
+					return reject("User name already exist please try with another user name.");
 				}
 				if (password === userData[0]?.password) {
 					delete userData[0]?.password;
