@@ -1,0 +1,548 @@
+{
+	"info": {
+		"_postman_id": "7aeb5fc2-bea4-4923-b376-28b79e57e27d",
+		"name": "orch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/v1/user/updateProfile",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"er14@gmail.com\",\r\n    \"userId\": 14,\r\n    \"first_name\": \"ER\",\r\n    \"last_name\": \"14\",\r\n    \"password\": \"cm9vdEAxMjM=\",\r\n    \"user_name\": \"er14\",\r\n    \"phone\": \"9990975724\",\r\n    \"company_id\": \"ABC001\",\r\n    \"company_name\": \"ABC\",\r\n    \"company_phone\": \"0120123423\",\r\n    \"company_address\": \"NOida Sec 2\",\r\n    \"domain_id\": \"276f18e0d57c4300acc0fdef01de1506\",\r\n    \"skills\" :  [{\"skill_name\" : \"skill 1\" ,\"skill_level\" : \"BEGINNER\", \"work_description\": \"having basic knowledge of skill 1\"},{\"skill_name\" : \"skill 2\" ,\"skill_level\" : \"Intermediate\", \"work_description\": \"having good knowledge of skill 2\"}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/user/updateProfile",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"updateProfile"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "lavish@gmail.com",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/workspace/createDomain",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"domain\":{\r\n        \"name\": \"ER15\",\r\n        \"description\": \"ER15 Domain\"\r\n    },\r\n    \"project\":{\r\n        \"name\": \"ER15\",\r\n        \"description\": \"ER15 project\"\r\n    },\r\n    \"userId\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/workspace/createDomain",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"workspace",
+						"createDomain"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/user/getProfile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":31\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/user/getProfile?userId=14",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"getProfile"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/user/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"er15@gmail.com\",\r\n    \"user_type\": \"ER\",\r\n    \"first_name\": \"ER15\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/user/register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/workspace/createWorkspace",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 14,\r\n    \"networks\": {\r\n        \"uuid\": \"9f5e5d0a-8918-4321-8fec-eb062a784fd7\",\r\n        \"fixed_ip\": \"192.168.128.10\"\r\n    },\r\n    \"server\": {\r\n        \"server_name\": \"workspace testing11 id\",\r\n        \"ram\": 2,\r\n        \"cpu\": 2,\r\n        \"capacity\": 2\r\n    },\r\n    \"flavorRef\": \"423def1e-30ec-4a2d-bad7-226c2de9250b\",\r\n    \"imageRef\": \"bef927d4-1eec-441e-a161-a25a43a80a7c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/workspace/createWorkspace",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"workspace",
+						"createWorkspace"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/workspace/getWorkspaceDetails",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workspace_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/workspace/getWorkspaceDetails?workspaceId=4",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"workspace",
+						"getWorkspaceDetails"
+					],
+					"query": [
+						{
+							"key": "workspaceId",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/workspace/getAllWorkspaceRequest?status=APPROVED",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8000/v1/workspace/getAllWorkspaceRequest?status=OPEN",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"workspace",
+						"getAllWorkspaceRequest"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "OPEN"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/workspace/updateRequest",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"userId\" : 14,\r\n  \"requestStatus\" : \"APPROVED\",\r\n  \"workspaceId\"  : 5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/workspace/updateRequest",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"workspace",
+						"updateRequest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/workspace/getServerDetails?userId=31",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isCompute\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/workspace/getServerDetails?userId=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"workspace",
+						"getServerDetails"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/user/adminLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@comboware.com\",\r\n    \"user_type\": \"ER\",\r\n    \"password\": \"root@123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/user/adminLogin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"user",
+						"adminLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/ticket/createTicket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": 14,\r\n    \"category_id\": \"1\",\r\n    \"subcategory_id\": \"1\",\r\n    \"ticket_subject\": \"VM issue\",\r\n    \"activities\": [{\"type\":\"TEXT\",\"content\":\"kuyvhhdbhddf\"},{\"type\":\"LINK\",\"content\":\"123.89i.78\"}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/ticket/createTicket",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"ticket",
+						"createTicket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/ticket/getSubCategories?categoryId=1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"categoryId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/ticket/getSubCategories?categoryId=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"ticket",
+						"getSubCategories"
+					],
+					"query": [
+						{
+							"key": "categoryId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/ticket/getCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8000/v1/ticket/getCategories",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"ticket",
+						"getCategories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/v1/ticket/addActivities",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/Lavish/Downloads/skipRecording.png"
+						},
+						{
+							"key": "activities",
+							"value": "[{\"type\":\"TEXT\",\"content\":\"kuyvhhdbhddf\"},{\"type\":\"LINK\",\"content\":\"123.89i.78\"}]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8000/v1/ticket/addActivities?userId=14&ticketNumber=CW-14-2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"ticket",
+						"addActivities"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "14"
+						},
+						{
+							"key": "ticketNumber",
+							"value": "CW-14-2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/v1/ticket/getTicketDetails?ticketNumber=CW-14-2&userId=14",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8000/v1/ticket/getTicketDetails?ticketNumber=CW-14-2&userId=14",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"ticket",
+						"getTicketDetails"
+					],
+					"query": [
+						{
+							"key": "ticketNumber",
+							"value": "CW-14-2"
+						},
+						{
+							"key": "userId",
+							"value": "14"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8000/v1/ticket/getAllTickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8000/v1/ticket/getAllTicketRequest?status=OPEN&repair_status=PENDING\n\n\n",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"v1",
+						"ticket",
+						"getAllTicketRequest"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "OPEN"
+						},
+						{
+							"key": "repair_status",
+							"value": "PENDING\n\n\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
