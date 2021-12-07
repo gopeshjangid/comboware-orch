@@ -51,7 +51,15 @@ function register(data) {
 			var userName = await getUser(`where user_name='${data?.user_name}'`);
 			// console.log(is_login,'userData',userData);
 			if (!userData[0] && !is_login && !userPhone[0] && !userName[0]) {
-				DB.query(`insert into users (email, user_type, first_name,last_name, password) values ('${data?.email}','${data?.user_type}','${data?.first_name}','${data?.last_name}' , '${data?.password}')`, async function (error, results) {
+				let adminFields = '';
+				let adminFieldsValue = '';
+				if(data?.user_type == 'ADMIN'){
+					adminFields = `, status, is_profile_setup`;
+					adminFieldsValue = `, 1 , 1`;
+				}
+				let qry = `insert into users (email, user_name, phone, user_type, first_name, password ${adminFields}) values ('${data?.email}', '${data?.user_name}','${data?.phone}', '${data?.user_type}', '${data?.first_name}', '${data?.password}' ${adminFieldsValue})`;
+				// console.log(qry);
+				DB.query(qry, async function (error, results) {
 					if (error) throw error;
 
 					let userData = await getUser(`where user_type='${data?.user_type}' and email = '${data?.email}'`);
