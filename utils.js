@@ -67,7 +67,7 @@ module.exports = {
 	},
 
 	DATE_FORMATTER: (date, format) => {
-		let format = "MMMM-DD-YYYY HH:mm:ss"
+		format = "MMMM-DD-YYYY HH:mm:ss"
 		if (date && format) {
 			return moment(date).format(format);
 		} else {
