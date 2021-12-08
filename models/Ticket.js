@@ -179,7 +179,7 @@ function addActivities(params) {
                 });
 
                 // let activityData = await getActivities(`where user_id = ${params?.query?.userId} and ticket_number= '${params?.query?.ticketNumber}' order by id desc`);
-                let activityData = await getActivitiesWithUserInfo(`select ta.*, users.first_name, users.last_name from ticket_activities as ta inner join users on users.id = ta.user_id where ta.ticket_number='${results[0]?.ticket_number}' order by id desc`);
+                let activityData = await getActivitiesWithUserInfo(`select ta.*, users.first_name, users.last_name from ticket_activities as ta inner join users on users.id = ta.user_id where ta.user_id = ${params?.query?.userId} and ta.ticket_number='${params?.query?.ticketNumber}' order by id desc`);
                 resolve(activityData);
             }
         } catch (err) {
