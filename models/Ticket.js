@@ -65,7 +65,7 @@ function getTicketDetails(condition) {
             DB.query(qry, async function (error, results) {
                 if (error) throw error;
 
-                let ta = await getActivities(`where ticket_number='${results[0]?.ticket_number}'`);
+                let ta = await getActivitiesByUser(`select ta.*, users.first_name, users.last_name from ticket_activities as ta inner join users on users.id = ta.user_id where ta.ticket_number='${results[0]?.ticket_number}'`);
                 let ticket = { ticket: results, activities: ta };
                 return resolve(ticket);
             })
@@ -191,6 +191,21 @@ function getActivities(condition) {
     return new Promise(async function (resolve, reject) {
         try {
             let qry = `select * from ticket_activities ${condition}`;
+            DB.query(qry, function (error, results) {
+                if (error) throw error;
+
+                return resolve(results || null);
+            })
+        } catch (err) {
+            reject('error in fetching category', err);
+        }
+    });
+}
+
+
+function getActivitiesByUser(qry) {
+    return new Promise(async function (resolve, reject) {
+        try {
             DB.query(qry, function (error, results) {
                 if (error) throw error;
 
