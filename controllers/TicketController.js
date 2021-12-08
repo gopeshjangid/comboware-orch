@@ -28,6 +28,7 @@ class TicketController {
           if (element.type == 'IMAGE') {
             element.content = `${req.protocol}://${req.get('host')}/${element.content}`;
           }
+          element.created_at = (element?.created_at) ? API.DATE_FORMATTER(element?.created_at, 'DD-MM-YYYY H:mm:ss') : element?.created_at;
           activities.push(element);
         });
       }
