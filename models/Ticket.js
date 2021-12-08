@@ -162,7 +162,7 @@ function addActivities(params) {
                     await saveActivities(activity);
                 });
 
-                let activityData = await getActivities(`where user_id = ${params?.query?.userId} and ticket_number= '${params?.query?.ticketNumber}' order by id desc`);
+                let activityData = await getActivitiesWithUserInfo(`select ta.*, users.first_name, users.last_name from ticket_activities as ta inner join users on users.id = ta.user_id where ta.user_id = ${params?.query?.userId} and ta.ticket_number='${params?.query?.ticketNumber}' order by id desc`);
                 resolve(activityData);
             } else {
                 if (params.file) {
@@ -183,6 +183,7 @@ function addActivities(params) {
                 resolve(activityData);
             }
         } catch (err) {
+            console.log(err);
             reject('error in creating ticket activities', err);
         }
     });
