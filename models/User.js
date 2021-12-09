@@ -171,16 +171,16 @@ function updateProfile(param) {
 							if(skill?.id){
 								cond = `id = ${skill?.id}`
 							}
-							DB.query(`delete from skills where ${cond}`, function (error, results) {
+							DB.query(`delete from customer_skills where ${cond}`, function (error, results) {
 								if (error) throw error;
 							})
 						}else{
 							if (skill?.id && !skill?.delete) {
-								DB.query(`update skills set skill_name = "${skill?.skill_name}", skill_level = "${skill?.skill_level}" where id = ${skill?.id}`, function (error, results) {
+								DB.query(`update customer_skills set skill_name = "${skill?.skill_name}", skill_level = "${skill?.skill_level}" where id = ${skill?.id}`, function (error, results) {
 									if (error) throw error;
 								})
 							} else {
-								DB.query(`insert into skills(user_id, skill_name, skill_level) VALUES(${data?.userId}, "${skill?.skill_name}", "${skill?.skill_level}")`, function (error, results) {
+								DB.query(`insert into customer_skills(user_id, skill_name, skill_level) VALUES(${data?.userId}, "${skill?.skill_name}", "${skill?.skill_level}")`, function (error, results) {
 									if (error) throw error;
 								})
 							}
