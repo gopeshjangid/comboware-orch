@@ -165,6 +165,75 @@ function updateProfile(param) {
 						skills = JSON.parse(skills);
 					}
 					skills.forEach(skill => {
+						// console.log('---',skill?.delete,'----');return;
+						if(skill?.delete && skill?.delete!=undefined){
+							let cond = `skill_name = "${skill?.skill_name}"`
+							if(skill?.id){
+								cond = `id = ${skill?.id}`
+							}
+							DB.query(`delete from skills where ${cond}`, function (error, results) {
+								if (error) throw error;
+							})
+						}else{
+							if (skill?.id && !skill?.delete) {
+								DB.query(`update skills set skill_name = "${skill?.skill_name}", skill_level = "${skill?.skill_level}" where id = ${skill?.id}`, function (error, results) {
+									if (error) throw error;
+								})
+							} else {
+								DB.query(`insert into skills(user_id, skill_name, skill_level) VALUES(${data?.userId}, "${skill?.skill_name}", "${skill?.skill_level}")`, function (error, results) {
+									if (error) throw error;
+								})
+							}
+						}
+					});
+				}
+
+				let profileImageField = '';
+				if (param.file && param.file !=undefined) {
+					profileImageField = `, profile_image = '${param?.file?.filename}'`
+				}
+				let query = `update users set first_name = '${data?.first_name}', last_name = '${data?.last_name}', phone = '${data?.phone}', user_name = '${data?.user_name}', company_id = '${data?.company_id}', company_position = '${data?.company_position}', company_name = '${data?.company_name}', company_phone = '${data?.company_phone}', company_address = '${data?.company_address}' ${passwordField} ${profileImageField} where id = ${data?.userId}`;
+
+				// console.log(query);return;
+
+				DB.query(query, async function (error, results) {
+					if (error) throw error;
+
+					let senduserData = await getUserById(data?.userId);
+					delete senduserData[0]?.password;
+					let vzTableData = await getVirtuozzoByUserId(data?.userId);
+					return resolve({ "user": senduserData[0] || null, "vz": vzTableData[0] || null });
+				})
+			}
+		} catch (err) {
+			reject('error in creating user', err);
+		}
+	});
+}
+
+function updateProfileOld(param) {
+	return new Promise(async function (resolve, reject) {
+		try {
+			var data = param?.body;
+			var userData = await getUserById(data?.userId);
+			// console.log(param.file,'userData',data);return;
+			if (!userData[0]) {
+				reject('User not exists');
+			} else {
+				/* let text = utils.REPLACESTR(CONFIG.USER_TEMPLATE, { "{first_name}": data?.first_name, "{url}": CONFIG?.USER_URL, "{domain_name}": "DomainData?.name", "{user_name}": data?.user_name, "{password}": password });
+				API.SENDEMAIL({
+					email: userData[0]?.email, subject: 'your account has been created on comboware.', text: text
+				}); */
+				let passwordField = '';
+				if (data.password != '') {
+					passwordField = `, password = '${data?.password}'`;
+				}
+				if (data?.skills) {
+					let skills = data?.skills;
+					if ((typeof skills) === 'string') {
+						skills = JSON.parse(skills);
+					}
+					skills.forEach(skill => {
 						if (skill?.id) {
 							DB.query(`update customer_skills set skill_name = "${skill?.skill_name}", skill_level = "${skill?.skill_level}" where id = ${skill?.id}`, function (error, results) {
 								if (error) throw error;
