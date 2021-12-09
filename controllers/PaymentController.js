@@ -35,7 +35,7 @@ class PaymentController {
   static getAllPayments = async (req, res) => {
     try {
       let qry = '';
-      if (req?.query?.payment_status !== 'ALL') {
+      /*if (req?.query?.payment_status !== 'ALL') {
         qry = `where payment_status= '${req?.query?.payment_status}' and is_paid=1`;
         if (req?.query?.payment_id) {
           qry += ` and payment_id like '%${req?.query?.payment_id}%' `;
@@ -44,11 +44,11 @@ class PaymentController {
         qry = `where payment_id like '%${req?.query?.payment_id}%' and is_paid=1`;
       } else {
         qry += `where is_paid=1`
-      }
+      }*/
 
-     
+      let where = req?.query?.userId ? ` where user_id =${req?.query?.userId} and payment_status='${req?.query?.payment_status}'` : ` where payment_status='${req?.query?.payment_status}'`;
 
-      let data = await Payment.getPayment(qry);
+      let data = await Payment.getPayment(where);
       let allPayments = [];
       if (data) {
         data.forEach(payment => {
