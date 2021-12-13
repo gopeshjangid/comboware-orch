@@ -57,7 +57,7 @@ function register(data) {
 					adminFields = `, status, is_profile_setup`;
 					adminFieldsValue = `, 1 , 1`;
 				}
-				let qry = `insert into users (email, user_name, phone, user_type, first_name, password ${adminFields}) values ('${data?.email}', '${data?.user_name}','${data?.phone}', '${data?.user_type}', '${data?.first_name}', '${data?.password}' ${adminFieldsValue})`;
+				let qry = `insert into users (email, user_name, last_name, phone, user_type, first_name, password ${adminFields}) values ('${data?.email}', '${data?.user_name}', '${data?.last_name}', '${data?.phone}', '${data?.user_type}', '${data?.first_name}', '${data?.password}' ${adminFieldsValue})`;
 				// console.log(qry);
 				DB.query(qry, async function (error, results) {
 					if (error) throw error;
